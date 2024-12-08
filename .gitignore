@@ -1,0 +1,11 @@
+*
+
+!.gitignore
+!waybar/
+!waypaper/
+!wlogout/
+!wofi/
+!hypr/
+!kitty/
+!gtk-3.0/
+!mako/
