@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # Define named workspaces
-workspaces=("lla" "llf" "llb" "lld")
+workspaces=("lla" "llf" "llb" "lld" "laa")
 
 # Get the current active workspace name
 current_workspace=$(hyprctl activeworkspace -j | jq -r '.name')

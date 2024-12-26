@@ -2,6 +2,7 @@
 
 declare -A projects=(
     ["Lulight Auth"]="$HOME/projects/lulight/auth"
+    ["Lulight Admin"]="$HOME/projects/lulight/admin"
     ["Lulight Frontend"]="$HOME/projects/lulight/frontend"
     ["Lulight Backend"]="$HOME/projects/lulight/backend"
     ["Lulight Deploy"]="$HOME/projects/lulight/deploy"
@@ -9,6 +10,7 @@ declare -A projects=(
 
 declare -A project_shortcuts=(
     ["Lulight Auth"]="lla"
+    ["Lulight Admin"]="laa"
     ["Lulight Frontend"]="llf"
     ["Lulight Backend"]="llb"
     ["Lulight Deploy"]="lld"

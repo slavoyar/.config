@@ -5,7 +5,7 @@ monitor_one="DP-2"
 monitor_two="HDMI-A-1" 
 
 # Define workspace allocation
-single_display_workspaces=("lla" "llf" "llb" "lld")
+single_display_workspaces=("lla" "llf" "llb" "lld" "laa")
 dual_display_monitor_one_workspaces=("lla" "llf")
 dual_display_monitor_two_workspaces=("llb" "lld")   # Workspaces for monitor_two in dual display
 
