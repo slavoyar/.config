@@ -7,19 +7,15 @@
   "gtk-layer-shell": true,
   "height": 50,
   "modules-left": ["tray", "hyprland/workspaces", "custom/uptime"],
-  "modules-center": ["hyprland/window"],
+  "modules-center": ["clock"],
   "modules-right": [
     "network",
     "bluetooth",
     "battery",
     "pulseaudio",
     "hyprland/language",
-    "clock",
     "custom/power",
   ],
-  "hyprland/window": {
-    "format": "{}",
-  },
 
   "hyprland/language": {
     "format": " {}",
@@ -43,12 +39,9 @@
   },
 
   "clock": {
-    "format": "{:%H:%M}  ",
-    "format-alt": "{:%A, %B %d, %Y (%R)}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "timezone": "Russia/Moscow",
     "calendar": {
-      "mode": "year",
+      "mode": "month",
       "mode-mon-col": 3,
       "weeks-pos": "right",
       "on-scroll": 1,
@@ -61,6 +54,19 @@
         "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
       },
     },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
+    "format": "  {:%a %d %b  %I:%M %p}", //12 hour format
+    // "format": " {:%d %m %Y  %H:%M}",	//24 hour format
+    "format-alt": "  {:%d/%m/%Y  %H:%M:%S}",
+    // //"timezones": [ "Kolkata" ],
+    // //"max-length": 200
+    "interval": 1,
   },
 
   "battery": {
@@ -80,10 +86,19 @@
     "format": "{icon} {volume}%",
     "tooltip": false,
     "format-muted": " Muted",
-    "on-click": "pwvucontrol",
+    "on-click": "pavucontrol",
     "on-scroll-up": "pamixer -i 5",
     "on-scroll-down": "pamixer -d 5",
     "scroll-step": 5,
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋋",
+      "headset": "󰋋",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [""],
+    },
   },
 
   "network": {

@@ -6,6 +6,7 @@ declare -A projects=(
     ["Lulight Frontend"]="$HOME/projects/lulight/frontend"
     ["Lulight Backend"]="$HOME/projects/lulight/backend"
     ["Lulight Deploy"]="$HOME/projects/lulight/deploy"
+    ["Portfolio"]="$HOME/projects/portfolio"
 )
 
 declare -A project_shortcuts=(
@@ -14,6 +15,7 @@ declare -A project_shortcuts=(
     ["Lulight Frontend"]="llf"
     ["Lulight Backend"]="llb"
     ["Lulight Deploy"]="lld"
+    ["Portfolio"]="PF"
 )
 
 # Prompt user to select a project
