@@ -4,7 +4,7 @@ window {
     monospace;
   font-size: 12pt;
   color: #f4dfcd;
-  background-color: rgba(30, 30, 46, 0.69);
+  background-color: rgba(30, 30, 46, 0.8);
 }
 
 button {
@@ -12,26 +12,33 @@ button {
   background-position: center;
   font-size: 40px;
   padding-top: 100px;
-  padding-bottom: 100px;
-  background-size: 60%;
-  border: none;
-  color: #d5b497;
+  padding-bottom: 50px;
+  background-size: 40%;
+  border-radius: 0;
+  border: 0;
+  color: #d4bff9;
   text-shadow: none;
-  border-radius: 20px 20px 20px 20px;
   background-color: rgba(1, 121, 111, 0);
-  margin: 1px;
   transition:
     box-shadow 0.2s ease-in-out,
     background-color 0.2s ease-in-out;
 }
 
 button:hover {
-  background-color: rgba(184, 149, 80, 0.3);
+  background-color: rgba(212, 191, 249, 0.3);
+}
+
+#lock,
+#logout,
+#suspend,
+#shutdown,
+#reboot,
+#hibernate {
+  background-size: 40%;
 }
 
 #lock {
   background-image: image(url("/home/yaroslav/.config/wlogout/icons/lock.png"));
-  background-size: 70%;
 }
 
 #logout {
@@ -48,13 +55,13 @@ button:hover {
 
 #shutdown {
   background-image: image(
-    url("/home/yaroslav/.config/wlogout/icons/power.png")
+    url("/home/yaroslav/.config/wlogout/icons/shutdown.png")
   );
 }
 
 #reboot {
   background-image: image(
-    url("/home/yaroslav/.config/wlogout/icons/restart.png")
+    url("/home/yaroslav/.config/wlogout/icons/reboot.png")
   );
 }
 
