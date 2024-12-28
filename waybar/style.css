@@ -114,6 +114,7 @@ tooltip {
 }
 
 #clock {
+  border-radius: 10px;
   color: #fab387;
   border-left: 0;
 }
