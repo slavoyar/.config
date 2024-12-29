@@ -1,0 +1,9 @@
+
+export GTK_THEME=Adwaita:dark
+export QT_STYLE_OVERRIDE=Adwaita-dark
+export QT_QPA_PLATFORMTHEME=qt5ct
+export XDG_CURRENT_DESKTOP=Hyprland
+export XDG_SESSION_DESKTOP=Hyprland
+export XDG_SESSION_TYPE=wayland
+export HYPRSHOT_DIR=$HOME/pictures/screenshots
+export WALLHAVEN_KEY=<API_KEY>
