@@ -29,5 +29,5 @@ echo "Purity has been toggled to: $NEW_PURITY" >> "$WALLPAPER_LOG"
 notify-send "Purity Changed" "Purity has been changed to: $NEW_PURITY" 
 
 # Change wallpaper using the provided script
-$HOME/.config/hypr/scripts/wallpaper/change_wallpaper.sh
+$HOME/.config/hypr/scripts/wallpaper/change_wallpaper.sh "$NEW_PURITY"
 

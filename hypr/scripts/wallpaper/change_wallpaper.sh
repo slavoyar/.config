@@ -25,9 +25,7 @@ change_wallpaper() {
 
   wallpaper_path="$WALLPAPER_DIR/$latest_wallpaper"
 
-  echo "$(date): Changing wallpaper to $wallpaper_path" >> "$WALLPAPER_LOG"
-
-  swaybg -i "$wallpaper_path" -m fill > /dev/null 2>&1 &
+  swaybg -i "$wallpaper_path" -m fill > /dev/null 2>&1
 }
 
 clean_old_images() {
@@ -78,6 +76,11 @@ fetch_wallpaper() {
   fi
 }
 
+if [ -n "$1" ]; then
+  change_wallpaper "$1"
+  exit 0
+fi
+
 # Ensure the wallpaper directory exists
 mkdir -p "$WALLPAPER_DIR"
 
@@ -86,7 +89,6 @@ if [[ ! -f $PURITY_FILE ]]; then
 fi
 CURRENT_PURITY=$(cat "$PURITY_FILE")
 
-change_wallpaper $CURRENT_PURITY
 fetch_wallpaper $CURRENT_PURITY
 change_wallpaper $CURRENT_PURITY
 
