@@ -8,7 +8,8 @@ from pathlib import Path
 # Configuration
 base_url = "https://wallhaven.cc/api/v1/search"
 api_key = os.getenv("WALLHAVEN_KEY")  # Retrieve API key from environment variable
-tags = ["asian", "woman"]  # Add your desired tags
+tags = []
+safe_tags = []
 categories = "101"  # Wallpapers categories (e.g., general, anime, etc.)
 resolution = "3840x2160"  # Minimum resolution
 ratio = "16x9,16x10"
@@ -27,7 +28,6 @@ def generate_seed():
 def fetch_image_url(tag, purity):
     """Fetch a random wallpaper URL from Wallhaven."""
     seed = generate_seed()
-    tag = 'drift' if purity == '100' else tag
     params = {
         "q": tag,
         "apikey": api_key,
@@ -70,7 +70,7 @@ def read_purity():
 
 def main():
     purity = read_purity()
-    tag = random.choice(tags)
+    tag = random.choice(tags) if purity != "100" else random.choice(safe_tags)
     print(f"Fetching wallpaper for tag: {tag} with purity: {purity}")
     image_url = fetch_image_url(tag, purity)
     if image_url:
