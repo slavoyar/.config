@@ -1,4 +1,3 @@
-adwaita-qt5
 adwaita-qt6
 base
 base-devel
@@ -25,9 +24,6 @@ intel-ucode
 jq
 kitty
 lazygit
-linux
-linux-firmware
-linux-headers
 lxappearance
 mako
 neovim
@@ -43,7 +39,6 @@ pavucontrol
 pipewire-pulse
 polkit-gnome
 python-requests
-qt5ct
 qt6ct
 ripgrep
 slurp
@@ -64,6 +59,4 @@ wlogout
 wofi
 xdg-desktop-portal-hyprland
 xfce4-settings
-yay-git
-yay-git-debug
 zram-generator
