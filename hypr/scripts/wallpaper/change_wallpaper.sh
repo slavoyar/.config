@@ -24,7 +24,7 @@ change_wallpaper() {
   fi
 
   wallpaper_path="$WALLPAPER_DIR/$latest_wallpaper"
-
+  pkill swaybg
   swaybg -i "$wallpaper_path" -m fill > /dev/null 2>&1
 }
 
