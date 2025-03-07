@@ -65,7 +65,6 @@ tooltip {
   opacity: 0.8;
   padding: 0px 10px;
   margin: 3px 0px;
-  margin-top: 5;
   border: 1px solid #181825;
 }
 
@@ -83,13 +82,13 @@ tooltip {
 
 #tray {
   border-radius: 10px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 #workspaces {
   background: #1e1e2e;
   border-radius: 10px;
-  margin-left: 10px;
+  margin-left: 5px;
   padding-right: 0px;
   padding-left: 5px;
 }
@@ -98,13 +97,13 @@ tooltip {
   color: #a6e3a1;
   border-left: 0px;
   border-radius: 0px 10px 10px 0px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 #custom-uptime {
   color: #a6e3a1;
   border-radius: 10px;
-  margin-left: 10px;
+  margin-left: 5;
 }
 
 #window {
@@ -129,7 +128,7 @@ tooltip {
 #bluetooth {
   color: #89b4fa;
   border-radius: 0px 10px 10px 0px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 #pulseaudio {
@@ -141,13 +140,4 @@ tooltip {
 
 #battery {
   color: #a6e3a1;
-  border-radius: 0 10px 10px 0;
-  margin-right: 10px;
-  border-left: 0px;
-}
-
-#custom-weather {
-  border-radius: 0px 10px 10px 0px;
-  border-right: 0px;
-  margin-left: 0px;
 }
