@@ -2,7 +2,7 @@
 
 # File to store the current purity state
 PURITY_FILE="$HOME/.purity"
-WALLPAPER_DIR="$HOME/pictures/desktop"
+WALLPAPER_DIR="/usr/share/wallpapers"
 CURRENT_WALLPAPER="$WALLPAPER_DIR/current_wallpaper"
 WALLPAPER_LOG="$HOME/.config/hypr/scripts/wallpaper/wallpaper.log"
 

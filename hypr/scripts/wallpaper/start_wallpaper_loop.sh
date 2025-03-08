@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WALLPAPER_DIR="$HOME/pictures/desktop"
+WALLPAPER_DIR="/usr/share/wallpapers"
 LATEST_WALLPAPER=$(ls -t "$WALLPAPER_DIR"/* | head -n 1)
 
 swaybg -i "$LATEST_WALLPAPER" -m fill > /dev/null 2>&1 &

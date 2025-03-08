@@ -3,7 +3,7 @@
 # Paths
 PURITY_FILE="$HOME/.purity"
 PYTHON_SCRIPT="$HOME/.config/hypr/scripts/wallpaper/fetch_wallpaper.py"
-WALLPAPER_DIR="$HOME/pictures/desktop"
+WALLPAPER_DIR="/usr/share/wallpapers"
 CURRENT_WALLPAPER="current_wallpaper"
 SAFE_WALLPAPER="safe_wallpaper"
 WALLPAPER_LOG="$HOME/.config/hypr/scripts/wallpaper/wallpaper.log"

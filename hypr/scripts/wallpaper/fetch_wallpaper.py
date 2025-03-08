@@ -14,12 +14,11 @@ categories = "101"  # Wallpapers categories (e.g., general, anime, etc.)
 resolution = "3840x2160"  # Minimum resolution
 ratio = "16x9,16x10"
 sorting = "random"
-ai_art_filter = "1"  # Include AI art (1=yes, 0=no)
-image_folder = Path.home() / "pictures/desktop"
+ai_art_filter = "0"  # Include AI art (1=yes, 0=no)
+image_folder = "/usr/share/wallpapers"
 purity_file = Path.home() / ".purity"
 
 # Ensure the folder exists
-image_folder.mkdir(parents=True, exist_ok=True)
 
 def generate_seed():
     """Generate a random seed for the request."""
@@ -54,7 +53,7 @@ def download_image(url, folder):
     """Download image from a URL."""
     response = requests.get(url)
     if response.status_code == 200:
-        filename = folder / f"{url.split('/')[-1]}"
+        filename = folder + f"/{url.split('/')[-1]}"
         with open(filename, "wb") as file:
             file.write(response.content)
         return filename
