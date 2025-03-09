@@ -28,6 +28,19 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk
 fi
 
+### Install sddm ###
+read -n1 -rep 'Would you like to install sddm? (y,n)' SDDM
+if [[ $SDDM == "Y" || $SDDM == "y" ]]; then
+    echo -e "Installing sddm...\n"
+    yay -S --noconfirm qt6 sddm win11-sddm-theme
+    sudo cp ./sddm/sddm.conf /etc/sddm.conf
+    sudo cp ./sddm/kde_settings.conf /etc/sddm.conf.d/kde_settings.conf
+    sudo cp ./sddm/theme.conf /usr/share/sddm/themes/win11-sddm-theme/theme.conf
+    sudo cp ./sddm/default.conf /usr/lib/sddm/sddm.conf.d/default.conf
+    echo -e "Enabling sddm...\n"
+    sudo systemctl enable --now sddm.service
+fi
+
 BASHRC="$HOME/.bashrc"
 ### Install teh starship shell ###
 read -n1 -rep 'Would you like to install the starship shell? (y,n)' STAR
