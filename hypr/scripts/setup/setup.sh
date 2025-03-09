@@ -11,8 +11,6 @@ else
 fi
 
 echo "Installing yay packages"
-yay -S --needed - < yay-packages.txt
-
 ### Install all of the above pacakges ####
 read -n1 -rep 'Would you like to install the packages? (y,n)' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
