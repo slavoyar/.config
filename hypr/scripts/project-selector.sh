@@ -7,6 +7,7 @@ declare -A projects=(
     ["Lulight Backend"]="$HOME/projects/lulight/backend"
     ["Lulight Deploy"]="$HOME/projects/lulight/deploy"
     ["Portfolio"]="$HOME/projects/portfolio"
+    ["Bond Bot"]="$HOME/projects/bond-bot"
 )
 
 declare -A project_shortcuts=(
@@ -16,6 +17,7 @@ declare -A project_shortcuts=(
     ["Lulight Backend"]="llb"
     ["Lulight Deploy"]="lld"
     ["Portfolio"]="PF"
+    ["Bond Bot"]="BB"
 )
 
 # Prompt user to select a project
@@ -33,8 +35,10 @@ if [ -n "$selected_project" ]; then
         hyprctl dispatch workspace name:"$project_shortcut"
     else
         hyprctl dispatch workspace name:"$project_shortcut"
-        hyprctl dispatch exec "kitty --title nvim --hold -e bash -c \"cd $project_path && nvim\""
+        hyprctl dispatch exec "kitty --title nvim --hold -e bash -c \"cd $project_path && nvim; exec bash\""
         hyprctl dispatch exec "kitty $project_path"
+        sleep 0.1
+        hyprctl dispatch resizeactive 400 0
     fi
 else
     echo "No project selected."
