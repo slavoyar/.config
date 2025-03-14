@@ -31,6 +31,7 @@ read -n1 -rep 'Would you like to install sddm? (y,n)' SDDM
 if [[ $SDDM == "Y" || $SDDM == "y" ]]; then
     echo -e "Installing sddm...\n"
     yay -S --noconfirm qt6 sddm win11-sddm-theme
+    sudo mkdir -p /etc/sddm.conf.d/
     sudo cp ./sddm/sddm.conf /etc/sddm.conf
     sudo cp ./sddm/kde_settings.conf /etc/sddm.conf.d/kde_settings.conf
     sudo cp ./sddm/theme.conf /usr/share/sddm/themes/win11-sddm-theme/theme.conf
