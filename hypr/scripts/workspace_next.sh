@@ -1,40 +1,39 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-# Define named workspaces
-workspaces=("lla" "llf" "llb" "lld" "laa" "PF" "BB")
+# File storing the order in which workspaces were opened
+history_file="$HOME/.project_workspace_history"
 
-# Get the current active workspace name
+# Get current workspace name
 current_workspace=$(hyprctl activeworkspace -j | jq -r '.name')
 
+# Get currently available workspaces (that have windows)
 available_workspaces=$(hyprctl workspaces -j | jq -r '.[].name')
 
-# Filter workspaces to include only available ones
-available_workspaces_filtered=()
-for workspace in "${workspaces[@]}"; do
-    if echo "$available_workspaces" | grep -q "^$workspace$"; then
-        available_workspaces_filtered+=("$workspace")
-    fi
-done
+# Read workspace history file and preserve order
+mapfile -t ordered_workspaces < <(grep -Fx "$available_workspaces" "$history_file" | grep -Fx "$available_workspaces")
 
-# If only one workspace is available, switch to it
-if [ "${#available_workspaces_filtered[@]}" -eq 1 ]; then
-    echo "Only one workspace available: ${available_workspaces_filtered[0]}"
-    hyprctl dispatch workspace name:"${available_workspaces_filtered[0]}"
+# If no valid workspaces, exit
+if [ "${#ordered_workspaces[@]}" -eq 0 ]; then
+    echo "No project workspaces are currently active."
+    exit 1
+fi
+
+# If only one, just switch to it
+if [ "${#ordered_workspaces[@]}" -eq 1 ]; then
+    hyprctl dispatch workspace name:"${ordered_workspaces[0]}"
     exit 0
 fi
 
-# Find the index of the current workspace
-current_index=$(printf "%s\n" "${available_workspaces_filtered[@]}" | grep -nx "$current_workspace" | cut -d: -f1)
+# Find index of current workspace
+current_index=$(printf "%s\n" "${ordered_workspaces[@]}" | grep -nx "$current_workspace" | cut -d: -f1)
 
-# Calculate the next workspace index
+# Determine next workspace
 if [ -n "$current_index" ]; then
-    next_index=$(( (current_index % ${#available_workspaces_filtered[@]}) + 1 ))
+    next_index=$(( (current_index % ${#ordered_workspaces[@]}) + 1 ))
 else
-    next_index=1 # Default to the first workspace if the current one is invalid
+    next_index=1
 fi
 
-# Get the next workspace name
-next_workspace="${available_workspaces_filtered[$((next_index-1))]}"
-
-# Switch to the next workspace or create it if it doesn't exist
+# Switch
+next_workspace="${ordered_workspaces[$((next_index-1))]}"
 hyprctl dispatch workspace name:"$next_workspace"
