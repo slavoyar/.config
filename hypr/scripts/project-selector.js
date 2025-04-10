@@ -112,10 +112,13 @@ function buildCandidates(projects) {
  */
 function launchFzf(candidates) {
   // Create a map to group candidates by their headers
+  const pathByName = {};
   const groupsMap = candidates.reduce((acc, line) => {
     const parts = line.split("::::");
     const group = parts[0];
-    const item = `${parts[1]}`;
+    const item = parts[1];
+
+    pathByName[item] = parts[2];
 
     if (!acc[group]) {
       acc[group] = [];
@@ -158,7 +161,8 @@ function launchFzf(candidates) {
     process.exit(1);
   }
 
-  return { selectedLine: fzf.stdout.trim(), parts: [parts[1], parts[2]] };
+  const selectedLine = fzf.stdout.trim();
+  return { selectedLine, path: pathByName[selectedLine] };
 }
 
 /**
@@ -204,7 +208,7 @@ function workspaceHasWindows(workspaceName) {
     const wsJSON = execSync("hyprctl workspaces -j", { encoding: "utf8" });
     const workspaces = JSON.parse(wsJSON);
     const target = workspaces.find((ws) => ws.name === workspaceName);
-    return target && Array.isArray(target.windows) && target.windows.length > 0;
+    return target;
   } catch (err) {
     console.error("Error querying workspaces:", err);
     return false;
@@ -223,15 +227,12 @@ function openWorkspace(workspace, projectPath) {
 
     // If the workspace has no windows open, open kitty sessions and resize.
     if (!workspaceHasWindows(workspace)) {
-      // Launch kitty with nvim in the project directory.
       execSync(
         `hyprctl dispatch exec "kitty --title nvim --hold -e bash -c \\"cd ${projectPath} && nvim; exec bash\\""`,
       );
-      // Launch another kitty instance with the project directory.
       execSync(`hyprctl dispatch exec "kitty ${projectPath}"`);
       // Wait briefly.
       execSync(`sleep 0.3`);
-      // Resize the active window.
       execSync(`hyprctl dispatch resizeactive 400 0`);
     }
   } catch (err) {
@@ -261,15 +262,7 @@ function main() {
   }
 
   const candidates = buildCandidates(projects);
-  const { selectedLine, parts } = launchFzf(candidates);
-
-  if (!selectedLine) {
-    console.log("No project selected.");
-    process.exit(0);
-  }
-
-  const friendlyName = parts[0].trim();
-  const fullPath = parts[1].trim();
+  const { selectedLine: friendlyName, path: fullPath } = launchFzf(candidates);
 
   console.log(`Selected project: ${friendlyName}`);
   console.log(`Path: ${fullPath}`);
