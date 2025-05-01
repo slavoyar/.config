@@ -208,7 +208,7 @@ function workspaceHasWindows(workspaceName) {
     const wsJSON = execSync("hyprctl workspaces -j", { encoding: "utf8" });
     const workspaces = JSON.parse(wsJSON);
     const target = workspaces.find((ws) => ws.name === workspaceName);
-    return target;
+    return target && target.windows > 0;
   } catch (err) {
     console.error("Error querying workspaces:", err);
     return false;
@@ -263,6 +263,11 @@ function main() {
 
   const candidates = buildCandidates(projects);
   const { selectedLine: friendlyName, path: fullPath } = launchFzf(candidates);
+
+  if (!friendlyName || !fullPath) {
+    console.error("No project selected");
+    process.exit(1);
+  }
 
   console.log(`Selected project: ${friendlyName}`);
   console.log(`Path: ${fullPath}`);

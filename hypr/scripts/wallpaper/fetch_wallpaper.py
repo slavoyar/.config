@@ -7,6 +7,7 @@ from pathlib import Path
 
 # Configuration
 base_url = "https://wallhaven.cc/api/v1/search"
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 api_key = os.getenv("WALLHAVEN_KEY")  # Retrieve API key from environment variable
 tags = []
 safe_tags = []
@@ -40,7 +41,7 @@ def fetch_image_url(tag, purity):
         "seed": seed
     }
     
-    response = requests.get(base_url, params=params)
+    response = requests.get(base_url, params=params, headers=headers)
     if response.status_code == 200:
         data = response.json()
         image_urls = [item["path"] for item in data["data"]]
